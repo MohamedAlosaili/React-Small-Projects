@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Start from "./components/Start"
+import Game from "./components/Game"
 
 function App() {
 
@@ -19,12 +20,18 @@ function App() {
 
   return (
     <main> 
-      <Start 
-        start={start} 
-        setStart={setStart}
-        playersInfo={playersInfo}
-        setPlayersInfo={setPlayersInfo}
-      />
+      { 
+        start
+        ? <Start 
+            setStart={setStart}
+            playersInfo={playersInfo}
+            setPlayersInfo={setPlayersInfo}
+            />
+        : <Game 
+            setStart={setStart}
+            playersInfo={playersInfo}
+          />  
+      }
     </main>
   )
 }
