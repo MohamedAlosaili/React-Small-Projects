@@ -1,0 +1,19 @@
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+}
+.bg-accent {
+  background-color: #344562;
+}
+.bg-accent-alt {
+  background-color: #3f81b9;
+}
+.color-accent {
+  color: #344562;
+}
+.color-accent-alt {
+  color: #3f81b9;
+}
