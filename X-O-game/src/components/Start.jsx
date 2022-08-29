@@ -16,10 +16,10 @@ export default function Start(props) {
     function handleChange(e) {
         setShowIncompelte(false)
 
-        const { name, value } = e.target
-
+        const { name, value, id } = e.target
+        console.log(name, id, value)
         setPlayersInfo(prevInfo => 
-            ({...prevInfo, [name]: {...prevInfo[name], name: value}})
+            ({...prevInfo, [name]: {...prevInfo[name], [id]: value}})
         )
     }
 
@@ -49,7 +49,11 @@ export default function Start(props) {
 
     function handleSbmit(e) {
         e.preventDefault()
-        if(firstPlayer.name && secondPlayer.name && firstPlayer.side) {
+        console.log(firstPlayer, secondPlayer)
+        if(
+            firstPlayer.name && secondPlayer.name && firstPlayer.side 
+            && firstPlayer.gender && secondPlayer.gender
+            ) {
             setStart(false)
         } else setShowIncompelte(true)
     }
@@ -67,86 +71,106 @@ export default function Start(props) {
                 className="w-96 max-w-full flex flex-col"
                 onSubmit={handleSbmit}
             >
-                <label className="flex align-center mb-2 text-base" htmlFor="first-player">
+                <label className="flex justify-between align-center mb-2 text-base" htmlFor="first-player">
                     First player
+                    <select 
+                        id="gender"
+                        name="firstPlayer"
+                        value={firstPlayer.gender}
+                        className="text-black text-sm rounded px-2 focus:outline-none focus:ring"
+                        onChange={handleChange}
+                        >
+                        <option value="">-- Gender --</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
                     <div 
                         data-player="first"
-                        className="ml-auto flex rounded overflow-hidden text-sm"
+                        className="flex rounded overflow-hidden text-sm"
                         onClick={handleSide}
-                    >
+                        >
                         <button
                             type="button" 
                             className={`
-                                py-0.5 px-6 bg-accent-alt 
-                                ${
-                                    firstPlayer.side === "X" 
-                                    ? "opacity-100" 
-                                    : "opacity-50"}`
-                                }
-                        >
+                            py-0.5 px-2 sm:px-6 bg-accent-light 
+                            ${
+                                firstPlayer.side === "X" 
+                                ? "opacity-100" 
+                                : "opacity-50"}`
+                            }
+                            >
                             X
                         </button>
                         <button 
                             type="button"
                             className={`
-                                py-0.5 px-6 bg-accent-alt 
-                                ${
-                                    firstPlayer.side === "O" 
-                                    ? "opacity-100" 
-                                    : "opacity-50"}`
-                                }
-                        >
+                            py-0.5 px-2 sm:px-6 bg-accent-light 
+                            ${
+                                firstPlayer.side === "O" 
+                                ? "opacity-100" 
+                                : "opacity-50"}`
+                            }
+                            >
                             O
                         </button>
                     </div>
                 </label>
                 <input 
-                    id="first-player"
+                    id="name"
                     type="text" 
                     className="text-black py-1 px-2 rounded focus:outline-none focus:ring"
                     placeholder="Player name"
                     name="firstPlayer"
                     value={firstPlayer.name}
                     onChange={handleChange}
-                />
-                <div className="h-0.5 my-8 bg-accent-alt"></div>
-                <label className="flex align-center mb-2 text-base" htmlFor="second-player">
+                    />
+                <div className="h-0.5 my-8 bg-accent-light"></div>
+                <label className="flex justify-between align-center mb-2 text-base" htmlFor="second-player">
                     Second player
+                    <select 
+                        id="gender"
+                        name="secondPlayer"
+                        value={secondPlayer.gender}
+                        className="text-black text-sm rounded px-2 focus:outline-none focus:ring"
+                        onChange={handleChange}
+                    >
+                        <option value="">-- Gender --</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
                     <div 
                         data-player="second"
-                        className="ml-auto flex rounded overflow-hidden text-sm"
+                        className="flex rounded overflow-hidden text-sm"
                         onClick={handleSide}
                     >
-                        <button 
-                            type="button"
+                        <button
+                            type="button" 
                             className={`
-                                py-0.5 px-6 bg-accent-alt 
-                                ${
-                                    secondPlayer.side === "X" 
-                                    ? "opacity-100" 
-                                    : "opacity-50"
-                                }`
-                                }
-                        >
+                            py-0.5 px-2 sm:px-6 bg-accent-light 
+                            ${
+                                secondPlayer.side === "X" 
+                                ? "opacity-100" 
+                                : "opacity-50"}`
+                            }
+                            >
                             X
                         </button>
                         <button 
                             type="button"
                             className={`
-                                py-0.5 px-6 bg-accent-alt 
-                                ${
-                                    secondPlayer.side === "O" 
-                                    ? "opacity-100" 
-                                    : "opacity-50"
-                                }`
-                                }
-                        >
+                            py-0.5 px-2 sm:px-6 bg-accent-light 
+                            ${
+                                secondPlayer.side === "O" 
+                                ? "opacity-100" 
+                                : "opacity-50"}`
+                            }
+                            >
                             O
                         </button>
                     </div>
                 </label>
                 <input 
-                    id="second-player"
+                    id="name"
                     type="text" 
                     className="mb-8 text-black py-1 px-2 rounded focus:outline-none focus:ring    "
                     placeholder="Player name"
@@ -155,7 +179,7 @@ export default function Start(props) {
                     onChange={handleChange}
                 />
                 <button 
-                    className="bg-accent-alt w-max m-auto py-1.5 px-10 rounded-lg active:scale-95 hover:opacity-90"
+                    className="bg-accent-light w-max m-auto py-1.5 px-10 rounded-lg active:scale-95 hover:opacity-90"
                 >
                     Start
                 </button>

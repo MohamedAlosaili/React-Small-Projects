@@ -7,10 +7,12 @@ function App() {
   const players = {
     firstPlayer: {
       name: "",
+      gender: "",
       side: ""
     },
     secondPlayer: {
       name: "",
+      gender: "",
       side: ""
     }
   }
@@ -30,6 +32,7 @@ function App() {
         : <Game 
             setStart={setStart}
             playersInfo={playersInfo}
+            setPlayersInfo={setPlayersInfo}
           />  
       }
     </main>
