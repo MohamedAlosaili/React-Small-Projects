@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { nanoid } from "nanoid" 
 import Start from "./components/Start"
 import Quiz from "./components/Quiz"
+import Mobile from "./components/Mobile"
 
 export default function App() {
   const [start, setStart] = useState(true)
@@ -9,6 +10,7 @@ export default function App() {
   const [questions, setQuestions] = useState([])
   const [allAnswered, setAllAnswered] = useState(false)
   const [showMessage, setShowMessage] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     getData()
@@ -31,8 +33,10 @@ export default function App() {
       }
     }
   }, [start])
-
-  useEffect(() => {}, [check])
+  
+  useEffect(() => {
+    if(window.innerWidth < 500) setIsMobile(true)
+  }, [])
 
   function toggleStart() {
     !start && setQuestions([])
@@ -50,22 +54,24 @@ export default function App() {
       setShowMessage(true)
     }
   }
-
   return (
     <main className="app--container">
-
-      {start 
-        ? <Start toggleStart={toggleStart} />
-        : <Quiz 
-          questions={questions} 
-          setQuestions={setQuestions} 
-          toggleCheck={toggleCheck}
-          toggleStart={toggleStart}
-          check={check}
-          showMessage={showMessage}
-          setAllAnswered={setAllAnswered}
-          />
+      {isMobile 
+        ? <Mobile /> 
+        : start 
+          ? <Start toggleStart={toggleStart} />
+          : <Quiz 
+            questions={questions} 
+            setQuestions={setQuestions} 
+            toggleCheck={toggleCheck}
+            toggleStart={toggleStart}
+            check={check}
+            showMessage={showMessage}
+            setAllAnswered={setAllAnswered}
+            />
+        
       }
+      
     </main>
   )
 }
