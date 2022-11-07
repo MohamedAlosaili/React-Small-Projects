@@ -1,7 +1,7 @@
 export default function Start({ toggleStart }) {
     return (
         <div className="start--container">
-            <img src="/public/assets/yellow-shape.png" className="top-img" />
+            <img src="/assets/yellow-shape.png" className="top-img" />
             <div className="start--content">
                 <h2 className="start--title">Quizzical</h2>
                 <p className="start--text">
@@ -9,7 +9,7 @@ export default function Start({ toggleStart }) {
                 </p>
                 <button className="start--btn btn" onClick={toggleStart}>Start quiz</button>
             </div>
-            <img src="/public/assets/blue-shape.png" className="bottom-img" />
+            <img src="/assets/blue-shape.png" className="bottom-img" />
         </div>
     )
 }
