@@ -61,7 +61,7 @@ export default function Quiz(props) {
     
     return (
         <div className="quiz--container">
-            <img src="/public/assets/yellow-shape.png" className="top-img" />
+            <img src="/assets/yellow-shape.png" className="top-img" />
             {showMessage && <h3 className="quiz--warning">Please answer all the questions before pressing check</h3>}
             {(questions.length === 0) 
                 ? <div className="loader"><span className="loader--spinner"></span></div> 
@@ -77,7 +77,7 @@ export default function Quiz(props) {
                     }
                   </div>
             }
-            <img src="/public/assets/blue-shape.png" className="bottom-img" />
+            <img src="/assets/blue-shape.png" className="bottom-img" />
         </div>
     )
 }
